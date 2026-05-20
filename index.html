@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python &amp; NumPy — 20 Practice Problems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1c1c1e;
+      --muted:     #6b6b70;
+      --faint:     #aeaeb2;
+      --rule:      #d1d1d6;
+      --paper:     #fafaf8;
+      --code-bg:   #f2f2f0;
+      --accent:    #1c1c1e;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink);
+      background: var(--paper);
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 6rem;
+    }
+
+    /* ── Problem block ── */
+    .problem {
+      margin-bottom: 2.75rem;
+      padding-bottom: 2.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .problem:last-of-type { border-bottom: none; }
+
+    .problem-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: .75rem;
+    }
+    .problem-num {
+      font-family: 'Inter', sans-serif;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+    .problem-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: .15rem 0 .75rem;
+      line-height: 1.3;
+    }
+    /* ── Body text ── */
+    .problem p { font-size: .92rem; margin-bottom: .6rem; }
+    .problem ol, .problem ul {
+      padding-left: 1.3rem;
+      font-size: .92rem;
+    }
+    .problem li { margin-bottom: .3rem; }
+    .problem > * + * { margin-top: .6rem; }
+
+    /* ── Inline code ── */
+    code {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: .82em;
+      background: var(--code-bg);
+      padding: .1em .35em;
+      border-radius: 3px;
+    }
+
+    /* ── Code block ── */
+    pre {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: .8rem;
+      line-height: 1.65;
+      background: var(--code-bg);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--ink);
+      border-radius: 0 4px 4px 0;
+      padding: .85rem 1.1rem;
+      overflow-x: auto;
+      margin: .75rem 0;
+    }
+
+    /* ── Answer lines ── */
+    .answer-lines {
+      margin-top: 1.1rem;
+    }
+    .answer-lines .label {
+      font-family: 'Inter', sans-serif;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: .6rem;
+    }
+    .line {
+      border-bottom: 1px solid var(--rule);
+      height: 2rem;
+      margin-bottom: .1rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.25rem;
+      border-top: 2px solid var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: .78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .25rem;
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: white; padding: 1.5cm 2cm; font-size: 11pt; }
+      .problem { page-break-inside: avoid; }
+      pre { border-left-color: #555; }
+    }
+
+    @media (max-width: 520px) {
+      body { padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 1</span>
+  </div>
+  <h2 class="problem-title">List Basics</h2>
+  <p>You are given a list of cities in Cambodia:</p>
+  <pre>cities = ["Phnom Penh", "Siem Reap", "Battambang", "Sihanoukville", "Kampot"]</pre>
+  <p>Do the following:</p>
+  <ol>
+    <li>Print the <strong>first</strong> and <strong>last</strong> city.</li>
+    <li>Add <code>"Kep"</code> to the end of the list.</li>
+    <li>Insert <code>"Kampong Cham"</code> at index <code>2</code>.</li>
+    <li>Remove <code>"Battambang"</code> from the list.</li>
+    <li>Print the final list and its length.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 2</span>
+  </div>
+  <h2 class="problem-title">List Slicing</h2>
+  <p>Given:</p>
+  <pre>nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</pre>
+  <p>Using <strong>slicing only</strong> (no loops), extract:</p>
+  <ol>
+    <li>The first 4 elements.</li>
+    <li>The last 3 elements.</li>
+    <li>All even-indexed elements.</li>
+    <li>The list reversed.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 3</span>
+  </div>
+  <h2 class="problem-title">Tuple Unpacking</h2>
+  <p>You have a tuple representing a student record:</p>
+  <pre>record = ("Dara", 21, "Data Science", 3.75)</pre>
+  <ol>
+    <li>Unpack the tuple into variables: <code>name</code>, <code>age</code>, <code>major</code>, <code>gpa</code>.</li>
+    <li>Print a formatted sentence:<br>
+      <code>Dara is 21 years old, studying Data Science with a GPA of 3.75.</code></li>
+    <li>Try to change <code>age</code> to <code>22</code> inside the tuple and explain what happens in a comment.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 4</span>
+  </div>
+  <h2 class="problem-title">Dictionary Operations</h2>
+  <p>Create a dictionary called <code>course_info</code> with the following key-value pairs:</p>
+  <ul>
+    <li><code>"course"</code> &rarr; <code>"Programming for Data Science"</code></li>
+    <li><code>"year"</code> &rarr; <code>2025</code></li>
+    <li><code>"students"</code> &rarr; <code>35</code></li>
+  </ul>
+  <p>Then:</p>
+  <ol>
+    <li>Add a key <code>"instructor"</code> with value <code>"MIN Sothearith"</code>.</li>
+    <li>Update <code>"students"</code> to <code>40</code>.</li>
+    <li>Safely retrieve the value of <code>"room"</code> with default <code>"TBA"</code>.</li>
+    <li>Delete <code>"year"</code> from the dictionary.</li>
+    <li>Print all keys and all values.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 5</span>
+  </div>
+  <h2 class="problem-title">Nested Dictionary</h2>
+  <p>Given this student database:</p>
+  <pre>students_db = {
+    "S001": {"name": "Sothearith", "scores": [85, 90, 78]},
+    "S002": {"name": "Sophea",     "scores": [92, 88, 95]},
+    "S003": {"name": "Visal",      "scores": [70, 65, 80]},
+}</pre>
+  <p>Loop through the database and for each student, calculate and print their <strong>average score</strong>. Print <code>"PASS"</code> if average &ge; 80, else <code>"FAIL"</code>.</p>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 6</span>
+  </div>
+  <h2 class="problem-title">For Loop with Range</h2>
+  <ol>
+    <li>Using <code>range()</code>, print the <strong>multiplication table of 7</strong> from 7&times;1 to 7&times;10. Format: <code>7 x 1 = 7</code></li>
+    <li>Using a <code>while</code> loop, find the <strong>first power of 2</strong> that exceeds 1000. Print each step: <code>2^1 = 2</code>, <code>2^2 = 4</code>, &hellip;</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 7</span>
+  </div>
+  <h2 class="problem-title">Break &amp; Continue</h2>
+  <p>Given rainfall measurements (mm) in Phnom Penh:</p>
+  <pre>rainfall = [12, 0, 35, 0, 0, 88, 42, 0, 19, 5]</pre>
+  <ol>
+    <li>Loop through <code>rainfall</code>. Skip any day with 0 mm using <code>continue</code>. Print: <code>Day X: Y mm</code></li>
+    <li>Loop again. Stop using <code>break</code> when rainfall exceeds 80 mm and print which day it was.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 8</span>
+  </div>
+  <h2 class="problem-title">List Comprehension</h2>
+  <p>Using <strong>list comprehension</strong> (no <code>for</code> loops with <code>.append</code>):</p>
+  <ol>
+    <li>Create a list of <strong>squares</strong> of numbers from 1 to 15.</li>
+    <li>From temperatures in Celsius <code>[0, 10, 20, 30, 37, 100]</code>, create a list of Fahrenheit values. Formula: <code>F = C &times; 9/5 + 32</code></li>
+    <li>Filter only words longer than 4 characters from:
+      <pre>words = ["rice", "mango", "rain", "Cambodia", "flood", "sun", "data"]</pre>
+    </li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 9</span>
+  </div>
+  <h2 class="problem-title">Dictionary Comprehension</h2>
+  <p>Given:</p>
+  <pre>subjects = ["Math", "Physics", "Chemistry", "Biology"]
+scores   = [88, 74, 92, 65]</pre>
+  <ol>
+    <li>Build a dictionary <code>grade_book</code> mapping each subject to its score.</li>
+    <li>Using comprehension, create a new dict <code>passed</code> with only subjects scoring &ge; 80.</li>
+    <li>Create a dict <code>letter_grade</code> mapping each subject to <code>"A"</code> if &ge; 90, <code>"B"</code> if &ge; 80, else <code>"C"</code>.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 10</span>
+  </div>
+  <h2 class="problem-title">Putting Python Together</h2>
+  <p>You have a list of student records:</p>
+  <pre>students = [
+    {"name": "Sothearith", "scores": [85, 90, 78, 92]},
+    {"name": "Dara",       "scores": [60, 55, 70, 65]},
+    {"name": "Sophea",     "scores": [95, 88, 91, 97]},
+    {"name": "Visal",      "scores": [72, 68, 80, 75]},
+]</pre>
+  <ol>
+    <li>Print each student's name, average score (2 decimal places), and Pass/Fail (pass &ge; 75).</li>
+    <li>Find and print the name of the <strong>top student</strong> (highest average).</li>
+    <li>Count how many students <strong>failed</strong>.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div>
+  </div>
+</div>
+
+
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 11</span>
+  </div>
+  <h2 class="problem-title">NumPy Array Creation</h2>
+  <p>Using NumPy, create the following arrays and print each one with its <strong>shape</strong> and <strong>dtype</strong>:</p>
+  <ol>
+    <li>An array of integers from 1 to 20 (inclusive).</li>
+    <li>8 evenly spaced values between 0 and 1.</li>
+    <li>A 3&times;4 matrix filled with zeros.</li>
+    <li>A 4&times;4 identity matrix.</li>
+    <li>A 2&times;5 matrix filled with the value <code>9</code>.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 12</span>
+  </div>
+  <h2 class="problem-title">Array Indexing &amp; Slicing</h2>
+  <pre>matrix = np.array([
+    [ 10,  20,  30,  40],
+    [ 50,  60,  70,  80],
+    [ 90, 100, 110, 120]
+])</pre>
+  <p>Extract the following using indexing/slicing:</p>
+  <ol>
+    <li>The element at row 1, column 2.</li>
+    <li>The entire second row.</li>
+    <li>The entire third column.</li>
+    <li>The sub-matrix of rows 0&ndash;1 and columns 1&ndash;3 (2&times;3 block).</li>
+    <li>The last element of the last row.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 13</span>
+  </div>
+  <h2 class="problem-title">Boolean Indexing</h2>
+  <p>Cambodia&rsquo;s monthly rainfall data (mm):</p>
+  <pre>rainfall = np.array([10, 20, 55, 130, 180, 210, 190, 175, 145, 80, 40, 15])
+months   = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]</pre>
+  <ol>
+    <li>Find all months with rainfall <strong>above 100 mm</strong> (wet season).</li>
+    <li>Find all months with rainfall <strong>below 30 mm</strong> (dry season).</li>
+    <li>Replace any rainfall below 20 mm with <code>0</code> (trace rainfall). Print the modified array.</li>
+    <li>Count how many months have rainfall between 50 mm and 150 mm.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 14</span>
+  </div>
+  <h2 class="problem-title">Array Arithmetic</h2>
+  <pre>a = np.array([2, 4, 6, 8, 10])
+b = np.array([1, 3, 5, 7,  9])</pre>
+  <p>Compute and print:</p>
+  <ol>
+    <li><code>a + b</code></li>
+    <li><code>a * b</code></li>
+    <li><code>a / b</code> &mdash; element-wise division</li>
+    <li><code>a ** 2 - b</code> &mdash; square of a minus b</li>
+    <li><code>np.sqrt(a) + np.log(b)</code></li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 15</span>
+  </div>
+  <h2 class="problem-title">Statistics with NumPy</h2>
+  <p>Daily temperature data (&deg;C) recorded in Phnom Penh over 14 days:</p>
+  <pre>temps = np.array([32, 34, 31, 35, 36, 33, 30, 29, 31, 35, 37, 36, 34, 33])</pre>
+  <p>Calculate and print:</p>
+  <ol>
+    <li>Mean, Median, and Standard Deviation.</li>
+    <li>Min and Max temperature, and the <strong>range</strong> (max &minus; min).</li>
+    <li>The <strong>index</strong> of the hottest day and the <strong>index</strong> of the coolest day.</li>
+    <li>How many days exceeded the mean temperature.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 16</span>
+  </div>
+  <h2 class="problem-title">Reshape, Transpose &amp; Flatten</h2>
+  <ol>
+    <li>Create an array of integers from 1 to 24. Reshape it into a <strong>4&times;6 matrix</strong>. Print shape.</li>
+    <li>Transpose the 4&times;6 matrix. Print new shape.</li>
+    <li>Flatten the transposed matrix back to 1D. Print result.</li>
+    <li>Reshape the original array into a <strong>3D array</strong> of shape <code>(2, 3, 4)</code> and print it.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 17</span>
+  </div>
+  <h2 class="problem-title">Axis Operations</h2>
+  <p>A class of 4 students took 5 quizzes. Rows = students, columns = quizzes:</p>
+  <pre>scores = np.array([
+    [80, 75, 90, 85, 88],
+    [70, 65, 80, 72, 78],
+    [95, 92, 88, 96, 91],
+    [60, 70, 65, 68, 72]
+])</pre>
+  <ol>
+    <li>Each <strong>student&rsquo;s average</strong> score (mean across columns, <code>axis=1</code>).</li>
+    <li>Each <strong>quiz&rsquo;s average</strong> score (mean across rows, <code>axis=0</code>).</li>
+    <li>The <strong>highest score per quiz</strong> (max across rows).</li>
+    <li>The <strong>total score per student</strong> (sum across columns).</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+</div>
+
+
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 18</span>
+  </div>
+  <h2 class="problem-title">Sorting, Unique &amp; Stacking</h2>
+  <pre>grades = np.array([88, 72, 95, 61, 88, 74, 95, 80, 61, 72, 88, 91])</pre>
+  <ol>
+    <li>Sort the grades in <strong>ascending</strong> order.</li>
+    <li>Find the <strong>unique grades</strong> and how many times each appears.</li>
+    <li>Find the index of the <strong>3 highest</strong> scores using <code>np.argsort()</code>.</li>
+    <li>Stack these two arrays <strong>vertically</strong>, then <strong>horizontally</strong>:
+      <pre>quiz1 = np.array([80, 85, 90])
+quiz2 = np.array([75, 88, 92])</pre>
+    </li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 19</span>
+  </div>
+  <h2 class="problem-title">Mixed Python + NumPy</h2>
+  <p>A dictionary of Cambodian provinces and their recorded maximum temperatures (&deg;C) this month:</p>
+  <pre>province_temps = {
+    "Phnom Penh":   [33, 35, 36, 34, 37],
+    "Siem Reap":    [31, 33, 34, 32, 35],
+    "Kampong Cham": [34, 36, 38, 35, 36],
+    "Battambang":   [30, 32, 33, 31, 34],
+}</pre>
+  <p>Using <strong>loops + NumPy</strong>, for each province:</p>
+  <ol>
+    <li>Convert the temperature list to a NumPy array.</li>
+    <li>Print the province&rsquo;s <strong>mean</strong>, <strong>max</strong>, and <strong>min</strong> temperature.</li>
+    <li>After the loop, print the name of the <strong>hottest province</strong> (highest mean).</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="problem-head">
+    <span class="problem-num">Problem 20</span>
+  </div>
+  <h2 class="problem-title">Climate Data Analysis</h2>
+  <p>Simulate 30 days of climate data for Phnom Penh:</p>
+  <pre>np.random.seed(2025)
+temperature = np.random.normal(loc=33, scale=2, size=30)   # °C
+humidity    = np.random.randint(60, 95, size=30)            # %
+rainfall    = np.random.randint(0, 50, size=30)             # mm</pre>
+  <p>Perform the following analysis:</p>
+  <ol>
+    <li>Print summary statistics (mean, std, min, max) for all three variables.</li>
+    <li>Build a list comprehension that returns <code>"Hot"</code> if temperature &gt; 34&deg;C, else <code>"Comfortable"</code>, for each of the 30 days.</li>
+    <li>Find all day indices where it rained <strong>and</strong> temperature was above 33&deg;C (use boolean indexing with <code>&amp;</code>).</li>
+    <li>Compare mean rainfall on hot days vs. comfortable days. Print which group had higher rainfall and by how much.</li>
+    <li>Stack <code>temperature</code> and <code>humidity</code> into shape <code>(2, 30)</code>, then transpose to <code>(30, 2)</code>. Print shape at each step.</li>
+  </ol>
+  <div class="answer-lines">
+    <div class="label">Answer</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="line"></div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer>
+  <span>Programming for Data Science &mdash; Week 2</span>
+  <span>Phnom Penh International University &nbsp;&middot;&nbsp; MIN Sothearith</span>
+</footer>
+
+</body>
+</html>
